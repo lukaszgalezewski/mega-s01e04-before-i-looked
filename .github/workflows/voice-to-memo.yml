@@ -1,0 +1,18 @@
+name: voice-to-memo (job-2)
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Run voice-to-memo procedure against job-2 MCP link
+        env:
+          JOB2_URL: ${{ secrets.JOB2_URL }}
+          CLIP_URL: ${{ secrets.CLIP_URL }}
+        run: node scripts/voice-to-memo.mjs
